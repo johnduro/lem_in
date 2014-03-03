@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2013/11/22 17:15:01 by mle-roy           #+#    #+#             */
+/*   Updated: 2013/11/28 13:54:19 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_lex	*browse;
+	const unsigned char		*s_1;
+	const unsigned char		*s_2;
+	unsigned int			i;
 
-	browse = lex->start;
-	while (browse)
+	i = 0;
+	s_1 = (const unsigned char*)s1;
+	s_2 = (const unsigned char*)s2;
+	while (i < n)
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		if (s_1[i] != s_2[i])
+			return (int)(s_1[i] - s_2[i]);
+		i++;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
-	{
-		write(2, "ERROR\n", 6);
-		return (0);
-	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
 	return (0);
 }

@@ -1,47 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2013/12/10 16:46:39 by mle-roy           #+#    #+#             */
+/*   Updated: 2013/12/10 18:45:37 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_lex	*browse;
+	t_list		*tmp;
+	t_list		*tmp2;
 
-	browse = lex->start;
-	while (browse)
+	tmp = *alst;
+	if (alst == NULL || *alst == NULL)
+		return ;
+	while (tmp != NULL)
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		tmp2 = tmp->next;
+		del(tmp->content, tmp->content_size);
+		free(tmp);
+		tmp = tmp2;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
-	{
-		write(2, "ERROR\n", 6);
-		return (0);
-	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
-	return (0);
+	*alst = NULL;
 }

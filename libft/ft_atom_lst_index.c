@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_atom_lst_index.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2014/02/11 16:38:05 by mle-roy           #+#    #+#             */
+/*   Updated: 2014/02/11 16:42:15 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+int			ft_atom_lst_index(t_lst *list, t_atom *atom)
 {
-	t_lex	*browse;
+	int			i;
+	t_atom		*atom_tmp;
 
-	browse = lex->start;
-	while (browse)
+	i = 0;
+	atom_tmp = list->first;
+	while (atom_tmp)
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		if (atom_tmp == atom)
+			return (i);
+		i++;
+		atom_tmp = atom_tmp->next;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
-	{
-		write(2, "ERROR\n", 6);
-		return (0);
-	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
-	return (0);
+	return (-1);
 }

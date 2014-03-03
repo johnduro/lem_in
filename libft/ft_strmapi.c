@@ -1,47 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2013/11/25 13:04:20 by mle-roy           #+#    #+#             */
+/*   Updated: 2013/11/26 19:48:41 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_lex	*browse;
+	size_t	i;
+	char	*new;
 
-	browse = lex->start;
-	while (browse)
+	i = 0;
+	new = (char*)(malloc(sizeof(new) * (ft_strlen(s) + 1)));
+	if (new == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		new[i] = f(i, s[i]);
+		i++;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
-	{
-		write(2, "ERROR\n", 6);
-		return (0);
-	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
-	return (0);
+	new[i] = '\0';
+	return (new);
 }

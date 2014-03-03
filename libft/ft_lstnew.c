@@ -1,47 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2013/12/10 18:18:32 by mle-roy           #+#    #+#             */
+/*   Updated: 2013/12/10 18:23:21 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	t_lex	*browse;
+	t_list		*ret;
 
-	browse = lex->start;
-	while (browse)
+	if ((ret = (t_list *) malloc(sizeof(*ret))) == NULL)
+		return (NULL);
+	if (content == NULL)
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		ret->content = NULL;
+		ret->content_size = 0;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
+	else if ((ret->content = ft_memdup(content, content_size)) == NULL)
 	{
-		write(2, "ERROR\n", 6);
-		return (0);
+		free(ret);
+		return (NULL);
 	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
-	return (0);
+	else
+		ret->content_size = content_size;
+	ret->next = NULL;
+	return (ret);
 }

@@ -1,47 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2013/11/20 16:58:34 by mle-roy           #+#    #+#             */
+/*   Updated: 2013/12/30 14:40:36 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_lex	*browse;
+	char	c;
 
-	browse = lex->start;
-	while (browse)
+	if (n < 0)
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		write(fd, "-", 1);
+		n = -n;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
+	if ((n / 10) == 0)
 	{
-		write(2, "ERROR\n", 6);
-		return (0);
+		c = n + '0';
+		write(fd, &c, 1);
+		return ;
 	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
-	return (0);
+	ft_putnbr_fd(n / 10, fd);
+	c = n % 10 + '0';
+	write(fd, &c, 1);
 }

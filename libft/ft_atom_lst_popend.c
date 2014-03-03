@@ -1,47 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_atom_lst_popend.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 17:29:18 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:17:43 by mle-roy          ###   ########.fr       */
+/*   Created: 2014/02/11 16:33:49 by mle-roy           #+#    #+#             */
+/*   Updated: 2014/02/11 16:37:02 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "lemmin.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-#include <stdio.h> //nononon
-
-void		print_lex(t_lx *lex)
+t_atom		*ft_atom_lst_popend(t_lst *list)
 {
-	t_lex	*browse;
+	t_atom		*pop;
 
-	browse = lex->start;
-	while (browse)
+	if (list->first == NULL || list->last == NULL)
+		return (NULL);
+	pop = list->last;
+	if (pop->prev == NULL)
 	{
-		printf("LEX=%s\n", browse->str);
-		browse = browse->next;
+		list->first = NULL;
+		list->last = NULL;
 	}
-}
-
-int			main(void)
-{
-	t_lx	*lex;
-//	t_env	*maze;
-
-	lex = get_lex();
-	if (lex == NULL)
+	else
 	{
-		write(2, "ERROR\n", 6);
-		return (0);
+		list->last = pop->prev;
+		list->last->next = NULL;
 	}
-	print_lex(lex);
-//	maze = get_maze(lex);
-//	treat_maze(maze);
-	return (0);
+	pop->next = NULL;
+	pop->prev = NULL;
+	list->len--;
+	return (pop);
 }
