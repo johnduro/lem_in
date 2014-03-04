@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 18:12:03 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:15:54 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/04 17:50:32 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int			is_valid_lem(char *buf)
 			flag++;
 		i++;
 	}
-	if (flag > 3)
+	if (flag > 3 || flag == 2)
 		return (0);
 	else
 		return (1);
@@ -72,6 +72,24 @@ static int			check_buf(char *buf)
 	return (1);
 }
 
+void				add_to_save(t_lx *lex, char *buf)
+{
+	t_lex		*node;
+
+	node = init_node(buf);
+	if (lex->save == NULL)
+	{
+		lex->save = node;
+		lex->save_end = node;
+	}
+	else
+	{
+		lex->save_end->next = node;
+		node->prev = lex->save_end;
+		lex->save_end = node;
+	}
+}
+
 t_lx				*get_lex(void)
 {
 	char	*buf;
@@ -85,6 +103,7 @@ t_lx				*get_lex(void)
 	{
 		if (ret == -1)
 			return (NULL);
+		add_to_save(list, buf);
 		if ((ret = check_buf(buf)))
 		{
 			if (ret == -1)

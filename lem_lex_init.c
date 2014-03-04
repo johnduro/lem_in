@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 18:15:23 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/03 18:20:10 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/04 15:58:18 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ t_lx				*init_lex(void)
 		return (NULL);
 	new->start = NULL;
 	new->end = NULL;
+	new->save = NULL;
+	new->save_end = NULL;
 	return (new);
 }
 
-static t_lex		*init_node(char *buf)
+t_lex				*init_node(char *buf)
 {
 	t_lex	*new;
 
