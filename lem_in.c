@@ -347,10 +347,39 @@ void		print_maze(t_env *maze)
 	}
 }
 
+t_res		*init_res(void)
+{
+	t_res	*new;
+
+	if ((new = (t_res *)malloc(sizeof(*new))) == NULL)
+		ft_exit("malloc", 1);
+	new->path = NULL;
+	new->current = NULL;
+	new->next = NULL;
+	return (new);
+}
+
+void		make_start(t_mz *start)
+{
+	start->flag = 1;
+	start->
+}
+
+t_res		*treat_maze(t_env *maze)
+{
+	t_res	*res;
+	t_mz	*room;
+
+	res = init_res();
+	make_start(maze->start_ptr);
+	room = maze->start_ptr;
+}
+
 int			main(void)
 {
 	t_lx	*lex;
 	t_env	*maze;
+	t_res	*res;
 
 	lex = get_lex();
 	if (lex == NULL)
@@ -358,6 +387,7 @@ int			main(void)
 	print_lex(lex); //nononononon
 	maze = get_maze(lex);
 	print_maze(maze); //nonononono
-//	treat_maze(maze, lex);
+	res = treat_maze(maze);
+//	print_result(res, maze, lex);
 	return (0);
 }

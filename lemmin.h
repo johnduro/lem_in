@@ -66,6 +66,20 @@ typedef struct		s_env
 	t_ant				*ants;
 }					t_env;
 
+typedef struct		s_room
+{
+	char				*name;
+	char				start;
+	char				end;
+}					t_room;
+
+typedef struct		s_res
+{
+	t_room				*path;
+	t_connex			*current;
+	t_connex			*next;
+}					t_res;
+
 t_lx		*get_lex(void);
 void		add_to_list(t_lx *list, char *buf);
 t_lx		*init_lex(void);
