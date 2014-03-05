@@ -1,0 +1,110 @@
+300
+##start
+E 1 1
+##end
+S 1 1
+l 1 1
+l3 1 1
+l4 1 1
+l5 1 1
+l6 1 1
+l7 1 1
+l8 1 1
+l9 1 1
+l10 1 1
+l11 1 1
+#
+l2 1 1
+XL1 1 1
+XL2 1 1
+XL3 1 1
+XL4 1 1
+XL5 1 1
+#almost the end
+XL6 1 1
+XL7 1 1
+XL8 1 1
+XL9 1 1
+XL10 1 1
+S1 1 1
+S2 1 1
+S3 1 1
+S4 1 1
+S5 1 1
+S6 1 1
+S7 1 1
+X1 1 1
+X2 1 1
+X3 1 1
+X4 1 1
+X5 1 1
+X6 1 1
+B1 1 1
+B2 1 1
+B3 1 1
+B4 1 1
+#description lien
+E-XL1
+E-XL2
+E-XL3
+E-XL4
+E-XL5
+E-XL6
+E-XL7
+E-XL8
+#et bah c'est super tout ca
+E-XL9
+#
+E-XL10
+S-S1
+S-S2
+S-S3
+S-S4
+S-S5
+S-S6
+S-S7
+E-l
+l-l2
+l-l3
+l2-l8
+l8-l9
+l9-l10
+l10-l11
+l11-l9
+l3-l4
+l4-l5
+l5-l6
+l6-l7
+l7-l5
+XL1-S7
+XL2-S7
+XL2-X1
+B3-S1
+X5-S3
+#la ligne suivante ne sert a rien
+##start
+B4-S5
+B1-S2
+X2-S4
+B2-S6
+XL1-X4
+XL5-X5
+XL9-l
+XL9-X6
+XL10-l
+XL10-X3
+#yeah
+X4-X1
+X4-B3
+X5-B3
+X5-B4
+B3-B4
+X6-B4
+X1-B1
+X2-B1
+X2-XL6
+X2-B2
+B1-B2
+X3-B2
+#
+#fin

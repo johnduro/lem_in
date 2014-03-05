@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_lex.c                                          :+:      :+:    :+:   */
+/*   get_lex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 18:12:03 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/04 17:50:32 by mle-roy          ###   ########.fr       */
+/*   Created: 2014/03/05 18:16:58 by mle-roy           #+#    #+#             */
+/*   Updated: 2014/03/05 18:32:29 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 #include "get_next_line.h"
 #include "lemmin.h"
 
+#include <stdio.h> //nononono
+
 static int			is_start_end(char *str)
 {
-	char	*buf;
+	char			*buf;
+	static int		start = 0;
+	static int		end = 0;
 
 	buf = ft_strtrim(str);
 	if (!ft_strcmp(buf, "##start"))
 	{
 		free(buf);
+		if (start == 1)
+			return (0);
+		start = 1;
 		return (1);
 	}
 	else if (!ft_strcmp(buf, "##end"))
 	{
 		free(buf);
+		if (end == 1)
+			return (0);
+		end = 1;
 		return (1);
 	}
 	free(buf);
@@ -42,7 +52,7 @@ static int			is_valid_lem(char *buf)
 	flag = 0;
 	while (buf[i])
 	{
-		if (i == 0 || (ft_isalnum(buf[i]) && ft_isspace(buf[i - 1])))
+		if (is_valid_char_lem(buf[i]) && (i == 0 || ft_isspace(buf[i - 1])))
 			flag++;
 		i++;
 	}
@@ -61,7 +71,7 @@ static int			check_buf(char *buf)
 		i++;
 	if (buf[i] == '\0')
 		return (-1);
-	if (buf[0] == '#')
+	if (buf[i] == '#')
 	{
 		if (is_start_end(buf))
 			return (1);

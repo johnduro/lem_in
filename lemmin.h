@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 17:18:46 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/04 18:37:21 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/05 18:05:17 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct		s_room
 	char				*name;
 	char				start;
 	char				end;
+	struct s_room		*next;
+	struct s_room		*prev;
 }					t_room;
 
 typedef struct		s_res
@@ -85,5 +87,21 @@ void		add_to_list(t_lx *list, char *buf);
 t_lx		*init_lex(void);
 t_lex		*init_node(char *buf);
 void		add_connex_to_room(t_mz *room, char *str, t_env *maze, int flag);
+int			error_lemmin(void);
+t_env		*get_maze(t_lx *lex);
+void		add_start_end(t_env *maze, t_lex *node);
+void		add_to_mz(t_env *maze, t_mz *room);
+void		add_room(t_env *maze, t_lex *lex);
+t_mz		*init_room(char *str);
+void		add_connex(t_env *maze, t_lex *lex);
+t_connex	*init_connex(char *str);
+void		make_ants(t_env *maze);
+int			is_valid_char_lem(char c);
+
+void		print_room(t_mz *room); //nononoonnononon
+void		print_maze(t_env *maze); //nonononoononon
+void		print_lex(t_lx *lex); //nononoonononon
+void		debug_solution(t_res *res); //nonononoon
+void		debug_treat_maze(t_env *maze, int i); //nononoononon
 
 #endif /* !LEMMIN_H */

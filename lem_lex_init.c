@@ -6,13 +6,20 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 18:15:23 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/04 15:58:18 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/05 18:05:00 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "lemmin.h"
 #include "libft.h"
+
+int					is_valid_char_lem(char c)
+{
+	if (c >= 33 && c <= 126)
+		return (1);
+	return (0);
+}
 
 t_lx				*init_lex(void)
 {
