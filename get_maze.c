@@ -6,15 +6,13 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:22:54 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/05 18:22:58 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/06 19:25:43 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "lemmin.h"
 #include "libft.h"
-
-#include <stdio.h> //nononononoonno
 
 static int			how_many_word(const char *str)
 {
@@ -72,6 +70,19 @@ static t_env		*init_maze(t_lex *first)
 	return (new);
 }
 
+static int			check_maze(t_env *maze)
+{
+	if (maze->start_ptr == NULL)
+		error_lemmin();
+	if (maze->end_ptr == NULL)
+		error_lemmin();
+	if (maze->rooms == NULL)
+		error_lemmin();
+	if (maze->ants == NULL)
+		error_lemmin();
+	return (0);
+}
+
 t_env				*get_maze(t_lx *lex)
 {
 	t_env	*maze;
@@ -88,10 +99,11 @@ t_env				*get_maze(t_lx *lex)
 		}
 		else if ((how_many_word(browse->str)) == 3)
 			add_room(maze, browse);
-		else if ((how_many_word(browse->str)) == 1)
+		else if (ft_strchr(browse->str, '-'))
 			add_connex(maze, browse);
 		browse = browse->next;
 	}
 	make_ants(maze);
+	check_maze(maze);
 	return (maze);
 }

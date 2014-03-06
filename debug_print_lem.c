@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:39:05 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/05 16:58:19 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/06 18:27:36 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void		debug_treat_maze(t_env *maze, int i)
 	print_maze(maze);
 }
 
-void		debug_solution(t_res *res)
+void		debug_solution(t_res *res, t_env *maze)
 {
 	t_room	*soluce;
 	int		i = 1;
 
 	soluce = res->path;
-	printf("\n*******\nSOLUTION\n********\n");
+	printf("\n*******\nSOLUTION\nFOURMIZ: %d\n********\n", maze->fourmiz);
 	while (soluce)
 	{
 		if (soluce->start == 1)

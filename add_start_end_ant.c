@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:42:21 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/05 14:42:25 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/06 16:36:58 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void			add_ant(t_env *maze, int ant)
 		ft_exit("malloc", 1);
 	new->nb = ant;
 	new->room = NULL;
+	new->move = 0;
+	new->finish = 0;
 	new->next = NULL;
 	new->prev = NULL;
 	if (maze->ants == NULL)

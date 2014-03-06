@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:31:42 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/05 14:52:26 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/06 16:15:22 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@ static int		how_many_dash(const char *str)
 		str++;
 	}
 	return (ret);
-}
-
-t_connex		*init_connex(char *str)
-{
-	t_connex	*new;
-
-	if ((new = (t_connex *)malloc(sizeof(*new))) == NULL)
-		ft_exit("malloc", 1);
-	new->name = ft_strdup(str);
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
 }
 
 static void		add_back_connex(char *name, char *str, t_env *maze)
@@ -77,6 +65,21 @@ void		add_connex_to_room(t_mz *room, char *str, t_env *maze, int flag)
 		add_back_connex(room->name, str, maze);
 }
 
+char			**get_room_name(char *str)
+{
+	char	**tab;
+	char	*tmp;
+
+	tab = ft_strsplit(str, '-');
+	tmp = ft_strtrim(tab[0]);
+	free(tab[0]);
+	tab[0] = tmp;
+	tmp = ft_strtrim(tab[1]);
+	free(tab[1]);
+	tab[1] = tmp;
+	return (tab);
+}
+
 void			add_connex(t_env *maze, t_lex *lex)
 {
 	t_mz	*room;
@@ -86,7 +89,7 @@ void			add_connex(t_env *maze, t_lex *lex)
 		error_lemmin();
 	if ((how_many_dash(lex->str) != 1))
 		error_lemmin();
-	tab = ft_strsplit(lex->str, '-');
+	tab = get_room_name(lex->str);
 	room = maze->rooms;
 	while (room)
 	{

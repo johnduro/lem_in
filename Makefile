@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/03/05 18:17:04 by mle-roy           #+#    #+#              #
-#    Updated: 2014/03/05 18:17:04 by mle-roy          ###   ########.fr        #
+#    Created: 2014/03/06 19:40:25 by mle-roy           #+#    #+#              #
+#    Updated: 2014/03/06 19:40:25 by mle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=lem_in_gh
-VERSION=1.0.4
+VERSION=1.0.7
 CFLAGS=-Wall -Werror -Wextra -g
 INCLUDES=-I ./libft/includes
 LIBS=-L ./libft -l ft
@@ -20,10 +20,15 @@ SRC=add_connex.c \
 	add_room.c \
 	add_start_end_ant.c \
 	debug_print_lem.c \
+	find_solution.c \
 	get_lex.c \
 	get_maze.c \
-	lem_in.c \
 	lem_lex_init.c \
+	main.c \
+	move_ants.c \
+	print_result.c \
+	save_solution.c \
+	treat_maze.c \
 
 OBJ=$(SRC:.c=.o)
 

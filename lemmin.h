@@ -6,7 +6,7 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 17:18:46 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/05 18:05:17 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/06 19:38:05 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct		s_ant
 {
 	int					nb;
 	char				*room;
+	char				move;
+	char				finish;
 	struct s_ant		*next;
 	struct s_ant		*prev;
 }					t_ant;
@@ -97,11 +99,17 @@ void		add_connex(t_env *maze, t_lex *lex);
 t_connex	*init_connex(char *str);
 void		make_ants(t_env *maze);
 int			is_valid_char_lem(char c);
+t_res		*treat_maze(t_env *maze);
+t_connex	*copy_connex(t_connex *list);
+int			find_solution(t_env *maze, t_res *res, int i);
+void		save_solution(t_res *res, t_env *maze);
+void		print_result(t_res *res, t_env *maze, t_lx *lex);
+void		move_ants(t_res *res, t_env *maze);
 
 void		print_room(t_mz *room); //nononoonnononon
 void		print_maze(t_env *maze); //nonononoononon
 void		print_lex(t_lx *lex); //nononoonononon
-void		debug_solution(t_res *res); //nonononoon
+void		debug_solution(t_res *res, t_env *maze); //nonononoon
 void		debug_treat_maze(t_env *maze, int i); //nononoononon
 
 #endif /* !LEMMIN_H */

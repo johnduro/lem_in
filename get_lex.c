@@ -6,15 +6,13 @@
 /*   By: mle-roy <mle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 18:16:58 by mle-roy           #+#    #+#             */
-/*   Updated: 2014/03/05 18:32:29 by mle-roy          ###   ########.fr       */
+/*   Updated: 2014/03/06 19:26:22 by mle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "get_next_line.h"
 #include "lemmin.h"
-
-#include <stdio.h> //nononono
 
 static int			is_start_end(char *str)
 {
@@ -56,7 +54,7 @@ static int			is_valid_lem(char *buf)
 			flag++;
 		i++;
 	}
-	if (flag > 3 || flag == 2)
+	if (flag > 3)
 		return (0);
 	else
 		return (1);
